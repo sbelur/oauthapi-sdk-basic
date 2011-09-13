@@ -11,17 +11,13 @@ case class ProviderConfigInput(targeturl:String,verb:HttpMethodType) extends Inp
 	private var consumerSecret:String = _
   
 	override def getBody():String = {
-	   println("authType"+authType)
-	  	authType match {
-	  	  case OAuth1 => getOAuth1Body
-	  	  case OAuth2 => getOAuth2Body
-	  	}
+	  	  getOAuthBody
     }
 	
-	private def getOAuth1Body():String = { 
+	private def getOAuthBody():String = { 
 		"{\"consumerKey\":\""+consumerKey+"\",\"consumerSecret\":\""+consumerSecret+"\",\"Authorization\":\""+auth.asBasicAuthHeader+"\"}"
 	}
-	private def getOAuth2Body():String = ""
+	
 	
 	def forAuthType(tp:AuthType) = {
 	  authType = tp

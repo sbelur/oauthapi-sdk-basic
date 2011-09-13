@@ -11,7 +11,7 @@ object ScalaSourceSample {
 	def main(args:Array[String]){
 	   args(0) match {
 	     case "createApp" => {
-	       val application = new Application(args(1)).forOwner(new ApplicationOwnerInput(args(2),args(3)))
+	       val application = Application(args(1)).forOwner(new ApplicationOwnerInput(args(2),args(3)))
 	       var resp = application.create()
 	       println(resp)
 	     }
@@ -19,22 +19,18 @@ object ScalaSourceSample {
 	     case "configureProvider" => {
 	       
 	       
-	       val getParams = (x:String) => x.toLowerCase match {
-								         	case "oauth1" => {
-								         	    var params = Map[ConstantsType,String]()
-								         	    params += (CONSUMER_KEY -> args(6))
-								         	    params += (CONSUMER_SECRET -> args(7))
-								         	    params
-								         	}
-								         	case _ => Map[ConstantsType,String]()
-								       }
+	       var params = Map[ConstantsType,String]()
+	       params += (CONSUMER_KEY -> args(6))
+		   params += (CONSUMER_SECRET -> args(7))
+		   params
 	       
 	       val res = new ProviderConfigBuilder()
 	       						 .createForApp(appName=args(1),appOwner=args(2),appOwnerPwd=args(3))
 	       						 .forProvider(args(4))
-	       						 .withOAuth1Params(getParams(args(5)))
+	       						 .withOAuthParams(params)
 								 .build
 								 .registerProviderConfiguration
+		   println(res)						 	
 								  
 	     }
 	   

@@ -42,27 +42,17 @@ class ApplicationUserBuilder {
         
         
        def registerUser() = {
-	   		var res = new ApplicationUser(userName,userPwd).forOwner(ApplicationOwnerInput(appOwnerName,appOwnerPwd)).forAppName(appName).create
-	   		import scala.util.parsing.json._
-	   		val json:Option[Any] = JSON.parseFull(res)
-	   		var map:Map[Any,Any] = null
-	   		var skey ="" 
-	   		json match {
-	   		  case Some(x) => println("some")
-	   		  case None => println("xxx")
-	   		}
-	   		json match {
-	   		  case Some(x) => map = x.asInstanceOf[Map[Any,Any]]  
-	   		  case None => map = Map()
-	   		}
-	   		skey = map.get("smartKey").get.toString
-	   		  
-	   		if(skey == "") println("Oops - something went wrong while creating user")
-	   		else {
-	   			println(skey)
-		   		println("Please visit this link to authorize")
-		   		println("https://"+appName+"-api.apigee.com/v1/providers/"+provider+"/authorize?smartkey="+skey+"&app_callback=https://apigee.com/oauthSuccess.jsp")
-	   		}
+            import scala.util.parsing.json._
+	   		var user:ApplicationUser = ApplicationUser(userName,userPwd).forOwner(ApplicationOwnerInput(appOwnerName,appOwnerPwd)).forAppName(appName).create
+	   		var skey = user.smartKey 
+	   		skey match {
+              case None => println("Oops - something went wrong while creating user")
+              case _ => {
+               	println(skey getOrElse "Not Found")
+               	println("Please visit this link to authorize")
+               	println("https://"+appName+"-api.apigee.com/v1/providers/"+provider+"/authorize?smartkey="+skey+"&app_callback=https://apigee.com/oauthSuccess.jsp")
+              }
+            } 
 	  }
     }
    

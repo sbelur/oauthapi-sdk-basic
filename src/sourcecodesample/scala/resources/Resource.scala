@@ -8,7 +8,7 @@ trait Resource {
 	
 	var owner:ApplicationOwnerInput = _
   
-    def create():String = {"Base classes need to override this"}
+    def create():this.type
  
 	def forOwner(owner:ApplicationOwnerInput):this.type = {
 	   this.owner = owner

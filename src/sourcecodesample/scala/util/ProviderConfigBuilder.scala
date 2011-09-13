@@ -5,9 +5,9 @@ import sourcecodesample.scala.resources._
 import sourcecodesample.scala.model.AuthenticationTypes._
 class ProviderConfigBuilder {
 
-  private val details = new UserDetails
+  private val details = new ProviderConfigDetails
 
-  class UserDetails {
+  class ProviderConfigDetails {
         var appName:String= _
         var appOwnerName:String= _
         var appOwnerPwd:String= _
@@ -17,11 +17,7 @@ class ProviderConfigBuilder {
         
         
        def registerProviderConfiguration() = {
-		    val config:ProviderConfiguration = authType match {
-		      case OAuth1 => ProviderConfiguration.newOAuth1Config(params.get(CONSUMER_KEY).get,params.get(CONSUMER_SECRET).get)
-		      case OAuth2 => println("Implement for oauth2"); throw new RuntimeException("Implement for oauth2")  
-		    }
-		    config
+		    ProviderConfiguration(params.get(CONSUMER_KEY).get,params.get(CONSUMER_SECRET).get)
 		    .forOwner(new ApplicationOwnerInput(appOwnerName,appOwnerPwd))
 		    .forAppName(appName)
 		    .forProviderName(provider)
@@ -36,8 +32,7 @@ class ProviderConfigBuilder {
 	  this
   }
   
-  def withOAuth1Params(p:Map[ConstantsType,String]):this.type = {
-      details.authType = AuthenticationTypes.OAuth1
+  def withOAuthParams(p:Map[ConstantsType,String]):this.type = {
       details.params = p
       this
   }
