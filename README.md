@@ -1,5 +1,15 @@
 <h2>PURPOSE:</h2>
 To provide a scala client API for Api provided by Apigee with Source feature.
+This project provides the APIs to invoke the resources:
+1. Application
+2. Application User
+3. Application Provider Configuration
+
+<h3>NOTE:</h3>
+To make the actual provider request, user is advised to refer to my other project
+- wadl2code which provides a specific interfaces for each provider. The Invocation
+in this project is a generic one.
+
 
 <h3>Note:</h3>
 The classes in util folder provide an illustration of how the resources can be invoked.
