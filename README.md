@@ -1,27 +1,33 @@
 <h2>PURPOSE:</h2>
 To provide a scala client API for Api provided by Apigee with Source feature.
 This project provides the APIs to invoke the resources:
+<ul>
+<li>
 1. Application
+</li>
+<li>
 2. Application User
+</li>
+<li>
 3. Application Provider Configuration
+</li>
 
 <h3>NOTE:</h3>
-To make the actual provider request, user is advised to refer to my other project
+1. To make the actual provider request, user is advised to refer to my other project
 - wadl2code which provides a specific interfaces for each provider. The Invocation
 in this project is a generic one.
 
-
-<h3>Note:</h3>
-The classes in util folder provide an illustration of how the resources can be invoked.
+2. The classes in util folder provide an illustration of how the resources can be invoked.
 This is just for example purpose and user can look at the types in resources folder also.
 
 
-<h3>How to run: </h3>
+<h2>How to run: </h2>
 1.setting CLASSPATH: Run it with the classpath of scala + thirdpartlibs
 2.sourcecodesample.scala.ScalaSourceSample is the Example launcher which contains some commands to execute the below apis.
 <b>The main class is just for illustration purpose, user can directly work on the resources types </b>
 
 <br/>
+<h2>REST APIs </h2>
 <b>Apigee Provides the following REST APIs to help build an application:</b>
 
 <b>1. Create Application</b> - This is the end point to create a developer application resource.
