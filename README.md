@@ -27,10 +27,10 @@ This is just for example purpose and user can look at the types in resources fol
 <h2>How to run: </h2>
 <ul>
 <li>
-setting CLASSPATH: Run it with the classpath of scala + thirdpartlibs
+setting CLASSPATH: Run it with the classpath of scala + thirdpartylibs
 </li>
 <li>sourcecodesample.scala.ScalaSourceSample is the Example launcher which contains some commands to execute the below apis.
-<b>The main class is just for illustration purpose, user can directly work on the resources types </b>
+<br/><b>The main class is just for illustration purpose, user can directly work on the resources types </b>
 </li>
 </ul>
 <br/>
